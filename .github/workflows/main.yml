@@ -7,7 +7,7 @@ on:
 
       
 jobs: 
-  deploy:
+  merge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
