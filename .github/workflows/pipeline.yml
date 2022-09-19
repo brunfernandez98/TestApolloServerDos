@@ -1,15 +1,12 @@
 name: Deployment Pipeline
 
-on:
-  pull_request:
-    branches:
+on: 
+  push:
+    branches: 
       - master
-    types:
-      - closed
-
-jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+      
+jobs: 
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,9 +19,6 @@ jobs:
         run: npm install
       - name: Lint
         run: npm run lint
-
-      
-
 
       
     
