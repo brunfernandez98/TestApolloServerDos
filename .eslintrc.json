@@ -1,7 +1,9 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true,
+        "es6": true
     },
     "plugins": [
         "@typescript-eslint"
@@ -18,6 +20,6 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-console": 2 
+        "no-console": 0 
     }
 }

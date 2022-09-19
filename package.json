@@ -10,7 +10,8 @@
     "start": "npm run compile && node ./build/index.js",
     "compile": "tsc",
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "prod": "npm i --production && npm run compile && npm run start"
   },
   "keywords": [],
   "author": "",

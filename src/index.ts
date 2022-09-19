@@ -17,7 +17,7 @@ const server = new ApolloServer({
   csrfPrevention: true,
   cache: 'bounded',
   introspection: true,
-  context: ({ req, res }) => {
+  context: ({ req, res }:any) => {
     return {
       user: req,
       req,
@@ -38,5 +38,5 @@ const server = new ApolloServer({
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }:any) => {
-  console.log(`🚀  Server ready at ${url}`);
+  console.log(`🚀 on  Server ready at ${url}`);
 });
