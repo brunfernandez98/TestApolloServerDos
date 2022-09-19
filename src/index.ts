@@ -38,5 +38,5 @@ const server = new ApolloServer({
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }: any) => {
-  console.log(`🚀sadasd Server ready at ${url}`);
+  console.log(`as Server ready at ${url}`);
 });
