@@ -1,0 +1,23 @@
+
+  {
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "lib": ["es2022", "es7", "es6", "dom"],
+      "module": "commonjs",
+      "preserveConstEnums": true,
+      "moduleResolution": "node",
+      "strict": true,
+      "sourceMap": true,
+      "target": "ESNext",
+      "types": ["node"],
+      "outDir": "build",
+      "resolveJsonModule": true
+    }, 
+    "exclude" : [
+      "node_modules",
+      "build"
+    ]
+    
+  }
+

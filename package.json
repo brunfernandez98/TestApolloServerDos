@@ -1,0 +1,35 @@
+{
+  "name": "testapolloserverdos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test:unit": "NODE_ENV= test jest",
+    "test": "npm run test:unit",
+    "dev": "ts-node-dev ./src/index.ts",
+    "start": "npm run compile && node ./build/index.js",
+    "compile": "tsc",
+    "lint": "eslint --ignore-path .gitignore . --ext .ts",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "eslint": "^8.23.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "jest": "^29.0.3",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "apollo-server": "^3.10.2",
+    "firebase": "^9.9.4",
+    "firebase-admin": "^11.0.1",
+    "graphql": "^16.6.0"
+  }
+}
