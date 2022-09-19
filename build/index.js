@@ -15,6 +15,12 @@ const server = new apollo_server_1.ApolloServer({
     csrfPrevention: true,
     cache: 'bounded',
     introspection: true,
+    context: ({ req, res }) => {
+        return {
+            user: req,
+            req,
+        };
+    },
     /**
      * What's up with this embed: true option?
      * These are our recommended settings for using AS;

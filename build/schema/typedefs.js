@@ -5,9 +5,9 @@ const typesDefs = (0, apollo_server_1.gql) `
 
 type Query {
     getBooks: [Book]
+    getBook(id: ID!): Book
   }
   
-
 
 type Book{
     title: String
