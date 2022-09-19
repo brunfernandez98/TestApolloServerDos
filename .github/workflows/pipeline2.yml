@@ -1,7 +1,7 @@
-name: Deployment Pipeline
+name: Deployment Pipeline2
 
 on: 
-  pull_request:
+  push:
     branches: 
       - master
 
