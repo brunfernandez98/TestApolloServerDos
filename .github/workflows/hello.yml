@@ -3,7 +3,7 @@ name: Say Hello
 on: 
   push:
     branches: 
-      - main
+      - master
     
 jobs:
     say-hello:
@@ -12,4 +12,3 @@ jobs:
         - name: Say Hello
           run: echo "Hello World!"
 
-          
