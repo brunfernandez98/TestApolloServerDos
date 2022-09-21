@@ -7,11 +7,11 @@ import http from "http";
 
 async function startApolloServer(schema: any, resolvers: any) {
   const app = express();
-  console.log("app", app);
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
+    introspection: true,
     //tell Express to attach GraphQL functionality to the server
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   }) as any;
@@ -23,4 +23,4 @@ async function startApolloServer(schema: any, resolvers: any) {
   console.log(`Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 //in the end, run the server and pass in our Schema and Resolver.
-startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers)
