@@ -18,10 +18,6 @@ const server = new ApolloServer({
   resolvers,
   csrfPrevention: true,
   cache: 'bounded',
-  cors: {
-    origin: corsOptions.origen,
-    credentials: true
-  },
   introspection: true,
   context: ({ req, res }:any) => {
     return {
