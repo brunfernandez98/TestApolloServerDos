@@ -6,10 +6,7 @@ pre-commit:
       files: git diff --name-only @{push}
       glob: "*.{js,ts,jsx,tsx}"
       run: npm run lint {files}
-    tests:
-      files: git diff --name-only @{push}
-      glob: "*.{js,ts, jsx, tsx}"
-      run: jest --findRelatedTests {files}
+
 
 
 # EXAMPLE USAGE:
