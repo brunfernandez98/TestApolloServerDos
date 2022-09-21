@@ -5,7 +5,9 @@ import resolvers from "./resolvers";
 import typeDefs from "./schema/typeDefs";
 
 
-
+const corsOptions = { 
+  origen : [ "https://www.your-app.example" , "https://studio.apollographql.com" ]  
+} ;
 
 
 
@@ -16,6 +18,10 @@ const server = new ApolloServer({
   resolvers,
   csrfPrevention: true,
   cache: 'bounded',
+  cors: {
+    origin: corsOptions.origen,
+    credentials: true
+  },
   introspection: true,
   context: ({ req, res }:any) => {
     return {
