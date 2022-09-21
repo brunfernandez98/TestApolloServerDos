@@ -7,6 +7,7 @@ import http from "http";
 
 async function startApolloServer(schema: any, resolvers: any) {
   const app = express();
+  console.log("app", app);
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs: schema,
