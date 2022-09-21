@@ -7,12 +7,7 @@ pre-commit:
       glob: "*.{js,ts,jsx,tsx}"
       run: npm run lint {files}
     
-# commit-msg :
-#   parallel: true
-#   commands:
-#     commitlint:
-#       run: npx commitlint 
-    
+
      
 
 
