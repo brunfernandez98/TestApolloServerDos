@@ -5,9 +5,7 @@ import resolvers from "./resolvers";
 import typeDefs from "./schema/typeDefs";
 
 
-const corsOptions = { 
-  origen : [ "https://www.your-app.example" , "https://studio.apollographql.com" ]  
-} ;
+
 
 
 
