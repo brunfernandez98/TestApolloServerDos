@@ -37,6 +37,6 @@ const server = new ApolloServer({
 });
 
 // The `listen` method launches a web server.
-server.listen().then(({ url }: any) => {
+server.listen({port: process.env.PORT || 4000}).then(({ url, }: any) => {
   console.log(`asdsf Server ready at ${url}`);
 });
