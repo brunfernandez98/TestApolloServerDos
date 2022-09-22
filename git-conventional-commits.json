@@ -14,9 +14,7 @@
       "merge",
       "revert"
     ],
-    "commitScopes": [],
-    "releaseTagGlobPattern": "v[0-9]*.[0-9]*.[0-9]*",
-    "issueRegexPattern": "(^|\\s)#\\d+(\\s|$)"
+    "commitScopes": []
   },
 
   "changelog" : {
