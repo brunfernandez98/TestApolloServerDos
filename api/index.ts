@@ -20,7 +20,7 @@ async function startApolloServer(schema: any, resolvers: any) {
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: 4000 }, resolve) //run the server on port 4000
   );
-  console.log(`Server readsaddsadsady at http://localhost:4000${server.graphqlPath}`);
+  console.log(`Server at http://localhost:4000${server.graphqlPath}`);
 }
 //in the end, run the server and pass in our Schema and Resolver.
 startApolloServer(typeDefs, resolvers)

@@ -1,10 +1,8 @@
-import { getBooks} from "./getBook";
-
+import { getStores} from "./getStore";
 
 const resolvers = {
     Query: {
-        getBooks: () => getBooks()
-        
+        getStores: () => getStores () 
     }
 };
 
