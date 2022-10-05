@@ -2,8 +2,7 @@ import { getStores} from "./getStore";
 
 const resolvers = {
     Query: {
-        getStores: () => getStores () 
+        getStores:() => getStores() 
     }
 };
-
 export default resolvers;

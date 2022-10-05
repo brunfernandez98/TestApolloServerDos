@@ -5,7 +5,7 @@ import resolvers from "./resolvers";
 import typeDefs from "./schema/typeDefs";
 import http from "http";
 
-async function startApolloServer(schema: any, resolvers: any) {
+async function startApolloServer (schema: any, resolvers: any) {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
