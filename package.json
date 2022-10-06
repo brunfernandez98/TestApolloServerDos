@@ -11,7 +11,7 @@
     "compile": "tsc",
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "prod": "npm i --production && npm run compile"
+    "prod": "npm i --production && npm run compile && npm run start"
   },
   "keywords": [],
   "author": "",
