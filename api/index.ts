@@ -1,38 +1,49 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import {
+  ApolloServerPluginDrainHttpServer,
+  ApolloServerPluginLandingPageLocalDefault,
+} from 'apollo-server-core';
 import resolvers from "./resolvers";
 import typeDefs from "./schema/typeDefs";
 import http from "http";
 import cors from "cors";
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+async function startApolloServer(typeDefs: any, resolvers: any) {
+  // Required logic for integrating with Express
+  const app = express();
+  // Our httpServer handles incoming requests to our Express app.
+  // Below, we tell Apollo Server to "drain" this httpServer,
+  // enabling our servers to shut down gracefully.
+  const httpServer = http.createServer(app);
 
-app.get('/api', (req, res) => {
-  res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-  res.end(`Hello! This is the API server`);
-});
-
-const httpServer = http.createServer(app);
-
-const startApolloServer = async(app: any, httpServer: any) => {
+  // Same ApolloServer initialization as before, plus the drain plugin
+  // for our httpServer.
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    csrfPrevention: true,
+    cache: 'bounded',
+    plugins: [
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    ],
   });
 
+  // More required logic for integrating with Express
   await server.start();
-  server.applyMiddleware({ app });
+  server.applyMiddleware({
+    app,
+
+    // By default, apollo-server hosts its GraphQL endpoint at the
+    // server root. However, *other* Apollo Server packages host it at
+    // /graphql. Optionally provide this to match apollo-server.
+    path: '/'
+  });
+
+  // Modified server startup
+  await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 
-startApolloServer(app, httpServer).then(() => {
-  httpServer.listen({ port: 4000,path:"/grapqhl" }, () => {
-    console.log(`🚀 Server rsddy at http://localhost:4000`);
-  });
-});
-
-export default httpServer;
+startApolloServer(typeDefs, resolvers);
