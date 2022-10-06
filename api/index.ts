@@ -10,6 +10,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/api', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+  res.end(`Hello! This is the API server`);
+});
+
 const httpServer = http.createServer(app);
 
 const startApolloServer = async(app: any, httpServer: any) => {
