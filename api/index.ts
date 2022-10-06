@@ -15,6 +15,9 @@ async function startApolloServer(typeDefs: any, resolvers: any) {
   // Our httpServer handles incoming requests to our Express app.
   // Below, we tell Apollo Server to "drain" this httpServer,
   // enabling our servers to shut down gracefully.
+  app.get("/", (req, res) => {
+    res.send("Hello World!");
+  });
   const httpServer = http.createServer(app);
 
   // Same ApolloServer initialization as before, plus the drain plugin
@@ -38,7 +41,7 @@ async function startApolloServer(typeDefs: any, resolvers: any) {
     // By default, apollo-server hosts its GraphQL endpoint at the
     // server root. However, *other* Apollo Server packages host it at
     // /graphql. Optionally provide this to match apollo-server.
-    path: '/'
+    path: '/graphql'
   });
 
   // Modified server startup
