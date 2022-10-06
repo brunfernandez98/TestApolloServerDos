@@ -6,25 +6,27 @@ import typeDefs from "./schema/typeDefs";
 import http from "http";
 import cors from "cors";
 
-async function startApolloServer (schema: any, resolvers: any) {
-  const app = express();
-   app.use(cors());
-  const httpServer = http.createServer(app);
-  
-  const server = new ApolloServer({
-    typeDefs: schema,
-    resolvers,
-    introspection: true,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  }) as any;
-  await server.start(); //start the GraphQL server.
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-  server.applyMiddleware({ path: "/graphql", app });
-  
-  await new Promise<void>((resolve) =>
-    httpServer.listen({ port: 4000 }, resolve) //run the server on port 4000
-  );
-  console.log(`Server sat http://localhost:4000${server.graphqlPath}`);
+const httpServer = http.createServer(app);
+
+const startApolloServer = async(app: any, httpServer: any) => {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
+
+  await server.start();
+  server.applyMiddleware({ app });
 }
-//in the end, run the server and pass in our Schema and Resolver.
-startApolloServer(typeDefs, resolvers)
+
+startApolloServer(app, httpServer).then(() => {
+  httpServer.listen({ port: 4000 }, () => {
+    console.log(`🚀 Server ready at http://localhost:4000`);
+  });
+});
+
+export default httpServer;
