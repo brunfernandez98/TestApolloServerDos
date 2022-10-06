@@ -8,15 +8,18 @@ import http from "http";
 async function startApolloServer (schema: any, resolvers: any) {
   const app = express();
   const httpServer = http.createServer(app);
+  const corsOptions = {
+    origin: ["https://www.your-app.example", "https://studio.apollographql.com"]
+  };
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
     introspection: true,
-    //tell Express to attach GraphQL functionality to the server
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   }) as any;
   await server.start(); //start the GraphQL server.
-  server.applyMiddleware({ path: "/graphql", app });
+
+  server.applyMiddleware({ path: "/graphql", app, cors: corsOptions });
   
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: 4000 }, resolve) //run the server on port 4000
