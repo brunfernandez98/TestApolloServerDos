@@ -16,7 +16,8 @@ async function startApolloServer (schema: any, resolvers: any) {
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   }) as any;
   await server.start(); //start the GraphQL server.
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ path: "graphql/", app });
+  
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: 4000 }, resolve) //run the server on port 4000
   );

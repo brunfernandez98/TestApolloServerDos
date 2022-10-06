@@ -1,19 +1,4 @@
 
-pre-commit:
-  parallel: true
-  commands:
-    linter:
-      files: git diff --name-only @{push}
-      glob: "*.{js,ts,jsx,tsx}"
-      run: npm run lint {files}
-    
-commit-msg :
-  parallel: true
-  commands:
-    commitlint:
-      run: npx git-conventional-commits commit-msg-hook {staged_files}
-     
-
 
 # EXAMPLE USAGE:
 #
