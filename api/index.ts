@@ -1,30 +1,33 @@
-import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import { ApolloServer } from 'apollo-server';
 import resolvers from "./resolvers";
 import typeDefs from "./schema/typeDefs";
-import http from "http";
 
-async function startApolloServer (schema: any, resolvers: any) {
-  const app = express();
-  const httpServer = http.createServer(app);
-  const corsOptions = {
-    origin: ["https://www.your-app.example", "https://studio.apollographql.com"]
-  };
+
+const {
+  ApolloServerPluginLandingPageLocalDefault
+} = require('apollo-server-core');
+
+
   const server = new ApolloServer({
-    typeDefs: schema,
+    typeDefs,
     resolvers,
-    introspection: true,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  }) as any;
-  await server.start(); //start the GraphQL server.
+    csrfPrevention: true,
+    cache: 'bounded',
+    /**
+     * What's up with this embed: true option?
+     * These are our recommended settings for using AS;
+     * they aren't the defaults in AS3 for backwards-compatibility reasons but
+     * will be the defaults in AS4. For production environments, use
+     * ApolloServerPluginLandingPageProductionDefault instead.
+    **/
+    plugins: [
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    ],
+  });
 
-  server.applyMiddleware({ path: "/graphql", app, cors: corsOptions });
-  
-  await new Promise<void>((resolve) =>
-    httpServer.listen({ port: 4000 }, resolve) //run the server on port 4000
-  );
-  console.log(`Server sat http://localhost:4000${server.graphqlPath}`);
-}
-//in the end, run the server and pass in our Schema and Resolver.
-startApolloServer(typeDefs, resolvers)
+  server.listen().then(({ url }:any) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
+
+
+
