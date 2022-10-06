@@ -25,7 +25,7 @@ const startApolloServer = async(app: any, httpServer: any) => {
 
 startApolloServer(app, httpServer).then(() => {
   httpServer.listen({ port: 4000,path:"/grapqhl" }, () => {
-    console.log(`🚀 Server fdsf reasddy at http://localhost:4000`);
+    console.log(`🚀 Server reasddy at http://localhost:4000`);
   });
 });
 
