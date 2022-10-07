@@ -1,5 +1,6 @@
 {
     "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
-    "redirects": [{ "source": "/", "destination": "/api", "type": 301 }]
+    "source": "/",
+    "destination": "/api"
 
   }
