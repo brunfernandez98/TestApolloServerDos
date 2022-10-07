@@ -5,8 +5,8 @@ import {
 } from 'apollo-server-core';
 import resolvers from "./resolvers";
 import typeDefs from "./schema/typeDefs";
-import http from "http";
-import cors from "cors";
+
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
